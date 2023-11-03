@@ -61,6 +61,8 @@ export function getTextRect (attrs: TextAttrs, styles: Partial<TextStyle>): Rect
       break
     }
   }
+  startX = Math.round(startX) + 0.5
+  startY = Math.round(startY) + 0.5
   return { x: startX, y: startY, width, height }
 }
 
@@ -93,7 +95,7 @@ export function drawText (ctx: CanvasRenderingContext2D, attrs: TextAttrs, style
   ctx.textBaseline = 'top'
   ctx.font = createFont(size, weight, family)
   ctx.fillStyle = color
-  ctx.fillText(text, rect.x + paddingLeft, rect.y + paddingTop, rect.width - paddingLeft - paddingRight)
+  ctx.fillText(text, Math.round(rect.x + paddingLeft) + 0.5, Math.round(rect.y + paddingTop) + 0.5, rect.width - paddingLeft - paddingRight)
 }
 
 export interface TextAttrs {
